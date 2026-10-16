@@ -12,7 +12,7 @@ with a complex, frequency-dependent coefficient $\alpha(\omega)$. The full write
 
 ## Main results
 
-1. **For a plane wave, the reduction is exact and α has a closed form.** The numerical optimum coincides with $\alpha^*(\omega)=\eta_1\lambda_1(0,\omega)$, the characteristic impedance of the porous layer at normal incidence. They agree to a relative 1e-7, and the residual drops to about 1e-13. This is the wall's exact Dirichlet-to-Neumann symbol: for each Fourier mode $k$, $\eta_1\lambda_1(k,\omega)$ matches the wall exactly, and a plane wave contains only $k=0$.
+1. **For a plane wave, the reduction is exact and α has a closed form.** The numerical optimum coincides with $\alpha^*(\omega)=\eta_1\lambda_1(0,\omega)$, the wall's Dirichlet-to-Neumann symbol at normal incidence. They agree to a relative 1e-7, and the residual drops to about 1e-13. The reduction is exact because, for each Fourier mode $k$, $\eta_1\lambda_1(k,\omega)$ matches the wall exactly, and a plane wave contains only $k=0$.
 2. **α has two regimes, separated by $\omega_c=\sigma\phi/(\rho_0\alpha_h)$.** Below $\omega_c$ (viscous regime), $\alpha^*\approx(1-i)\sqrt{a\,\eta_1\,\omega/2}$, so the real part equals minus the imaginary part, and both grow as $\sqrt{\omega}$. Above $\omega_c$ (inertial regime), $-\mathrm{Im}\,\alpha^*\approx\omega\sqrt{\xi_1\eta_1}$ grows linearly, while $\mathrm{Re}\,\alpha^*$ saturates at $\tfrac a2\sqrt{\eta_1/\xi_1}$. Melamine foam ($\omega_c\approx1.1\times10^4$ rad/s) crosses over inside the studied band. Birch LT and ISOREL ($\omega_c\approx4.9$ and $7.2\times10^4$ rad/s) stay in the viscous regime.
 3. **For a spatially structured source, no single α is exact.** Different modes $k$ want different coefficients, so the optimum is a compromise weighted by the source's spatial spectrum $|g_k|^2$. A constant α is a local approximation of a nonlocal operator. For a Gaussian beam the optimum moves by at most 1.4% from the plane-wave value, and the normalised residual stays between $10^{-6}$ and $10^{-3}$. The error is ordered by the nonlocality parameter $k_\mathrm{eff}^2/|\kappa_1^2|$, so melamine, the least resistive material, is the worst represented.
 
@@ -30,7 +30,7 @@ Dividing by the source energy $\sum_k|g_k|^2$ fixes this. Combined with multi-st
 
 ## Model
 
-Air occupies $-L<x<0$, with the source $g(y)$ imposed at $x=-L$. The porous wall fills $x>0$, the interface Γ is at $x=0$, and the problem is periodic in $y$. The formulation follows Magoulès et al. [1]. The wall follows a rigid-frame Biot–Allard-type model:
+Air occupies $-L<x<0$, with the source $g(y)$ imposed at $x=-L$. The porous wall fills $x>0$, the interface Γ is at $x=0$, and the problem is periodic in $y$. The formulation follows Magoulès et al. [1]. The wall follows a rigid-frame equivalent-fluid model:
 
 $$\nabla\!\cdot(\eta_1\nabla u)+\omega^2\xi_1\Big(1+\tfrac{i\,a}{\xi_1\omega}\Big)u=0,\qquad \eta_1=\tfrac{\phi}{\alpha_h},\quad \xi_1=\tfrac{\phi\gamma_p}{c_0^2},\quad a=\tfrac{\sigma\phi^2\gamma_p}{c_0^2\rho_0\alpha_h}.$$
 
@@ -56,7 +56,7 @@ python -m pytest -q              # closed form, amplitude invariance, physical s
 ```
 
 ```
-porous_alpha/   materials.py (Biot–Allard coefficients), sources.py (spatial profiles, Fourier coefficients),
+porous_alpha/   materials.py (equivalent-fluid coefficients), sources.py (spatial profiles, Fourier coefficients),
                 model.py (λ0, λ1, mode errors, normalised objective, optimiser, sweep)
 scripts/        compute.py, make_figures.py
 tests/          test_model.py

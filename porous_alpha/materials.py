@@ -1,4 +1,4 @@
-"""Porous materials described by a Biot-Allard-type rigid-frame model.
+"""Porous materials described by a rigid-frame equivalent-fluid model.
 
 Each material is characterised by three macroscopic parameters:
 porosity phi, flow resistivity sigma (N.s.m^-4) and tortuosity alpha_h.
